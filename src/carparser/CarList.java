@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -56,4 +58,27 @@ public class CarList extends ArrayList<Car> {
 		}
 	}
 	
+	/**
+	 * A Comparator used to sort the car list into price order.
+	 */
+	class PriceComparator implements Comparator<Car>
+	{
+		@Override
+		public int compare(Car car1, Car car2) {
+			double comp = (car1.getPrice()-car2.getPrice());
+			if (comp < 0)
+				return -1;
+			if (comp > 0)
+				return 1;
+			return 0;
+		}
+	}
+	
+	/**
+	 * Sorts the car list into price order.
+	 */
+	public void sortByPrice()
+	{
+		Collections.sort(this, new PriceComparator());
+	}
 }

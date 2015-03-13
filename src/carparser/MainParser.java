@@ -22,11 +22,13 @@ public class MainParser {
 			e.printStackTrace();
 		}
 		
-		// Print all data
+		
+		// Sort list and print price data
+		list.sortByPrice();
 		final int LIST_SIZE = list.size();
 		for (int i=0; i<LIST_SIZE; ++i)
 		{
-			list.get(i).printAll();
+			list.get(i).printNameAndPrice();
 		}
 	}
 

@@ -21,11 +21,19 @@ public class Car
 	}
 	
 	/**
-	 * Prints all data about the car to standard output
+	 * Prints all data about the car to standard output.
 	 */
 	public void printAll()
 	{
 		System.out.println(name_ + " - " + sipp_ + " - " + supplier_ + " - " + price_ + " - " + rating_);
+	}
+	
+	/**
+	 * Prints the name and price for the car.
+	 */
+	public void printNameAndPrice()
+	{
+		System.out.println(name_ + " - " + price_);
 	}
 
 
