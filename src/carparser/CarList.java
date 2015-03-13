@@ -65,7 +65,7 @@ public class CarList extends ArrayList<Car> {
 	{
 		@Override
 		public int compare(Car car1, Car car2) {
-			double comp = (car1.getPrice()-car2.getPrice());
+			double comp = (car1.PRICE-car2.PRICE);
 			if (comp < 0)
 				return -1;
 			if (comp > 0)

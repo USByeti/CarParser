@@ -7,17 +7,22 @@ package carparser;
  */
 public class Car 
 {
-	private final String sipp_, name_, supplier_;
-	private final double price_, rating_;
+	private final String SIPP, NAME, SUPPLIER;
+	private final double RATING;
+	private final SippData SIPP_DATA;
+
+	public final double PRICE;
 	
 	
 	public Car(String sipp, String name, String supplier, double price, double rating)
 	{
-		sipp_ = sipp;
-		name_ = name;
-		supplier_ = supplier;
-		price_ = price;
-		rating_ = rating;
+		SIPP = sipp;
+		NAME = name;
+		SUPPLIER = supplier;
+		PRICE = price;
+		RATING = rating;
+		
+		SIPP_DATA = new SippData(sipp);
 	}
 	
 	/**
@@ -25,7 +30,7 @@ public class Car
 	 */
 	public void printAll()
 	{
-		System.out.println(name_ + " - " + sipp_ + " - " + supplier_ + " - " + price_ + " - " + rating_);
+		System.out.println(NAME + " - " + SIPP + " - " + SUPPLIER + " - " + PRICE + " - " + RATING);
 	}
 	
 	/**
@@ -33,47 +38,17 @@ public class Car
 	 */
 	public void printNameAndPrice()
 	{
-		System.out.println(name_ + " - " + price_);
-	}
-
-
-	/**
-	 * @return The sipp.
-	 */
-	public String getSipp()
-	{
-		return sipp_;
+		System.out.println(NAME + " - " + PRICE);
 	}
 	
-	/**
-	 * @return The name of the car.
-	 */
-	public String getName()
+	public void printSippData()
 	{
-		return name_;
-	}
-	
-	/**
-	 * @return The supplier.
-	 */
-	public String getSupplier()
-	{
-		return supplier_;
-	}
-	
-	/**
-	 * @return The price.
-	 */
-	public double getPrice()
-	{
-		return price_;
-	}
-	
-	/**
-	 * @return The rating.
-	 */
-	public double getRating()
-	{
-		return rating_;
+		System.out.println(NAME + " - " + 
+	                       SIPP + " - " + 
+				           SIPP_DATA.CAR_TYPE + " - " +
+	                       SIPP_DATA.DOORS + " - " +
+				           SIPP_DATA.TRANSMISSION + " - " +
+	                       SIPP_DATA.FUEL + " - " +
+				           SIPP_DATA.AIR_CON);
 	}
 }

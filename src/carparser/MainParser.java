@@ -30,6 +30,12 @@ public class MainParser {
 		{
 			list.get(i).printNameAndPrice();
 		}
+		
+		for (int i=0; i<LIST_SIZE; ++i)
+		{
+			list.get(i).printSippData();
+		}
+		
 	}
 
 }
