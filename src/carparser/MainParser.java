@@ -32,11 +32,15 @@ public class MainParser {
 			list.get(i).printNameAndPrice();
 		}
 		
+		printLineBreak();
+		
 		// Print the sipp data for all cars
 		for (int i=0; i<LIST_SIZE; ++i)
 		{
 			list.get(i).printSippData();
 		}
+		
+		printLineBreak();
 		
 		// Print the top suppliers for each type of car
 		ArrayList<Car> topRatedList = list.getHighestRatedSuppliers();
@@ -45,6 +49,8 @@ public class MainParser {
 			topRatedList.get(i).printSupplierRating();
 		}
 		
+		printLineBreak();
+		
 		// Sort and then print the Scores for cars
 		list.sortByCombinedScore();
 		for (int i=0; i<LIST_SIZE; ++i)
@@ -52,6 +58,12 @@ public class MainParser {
 			list.get(i).printScoreDetails();
 		}
 		
+	}
+	
+	
+	private static void printLineBreak()
+	{
+		System.out.println("\n\n-----------------------------------------------------\n\n");
 	}
 
 }
