@@ -130,11 +130,16 @@ public class CarList extends ArrayList<Car> {
 	}
 	
 	
-	/**
-	 * Sorts the car list into descending rating order.
-	 */
-	public void sortByRating()
+	class ScoreComparator implements Comparator<Car>
 	{
-		Collections.sort(this, new RatingComparator());
+		@Override
+		public int compare(Car car1, Car car2) {
+			return compareDoubles((car2.SCORE + car2.RATING), (car1.SCORE + car1.RATING));
+		}
+	}
+	
+	public void sortByCombinedScore()
+	{
+		Collections.sort(this, new ScoreComparator());
 	}
 }

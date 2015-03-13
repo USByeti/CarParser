@@ -45,6 +45,13 @@ public class MainParser {
 			topRatedList.get(i).printSupplierRating();
 		}
 		
+		// Sort and then print the Scores for cars
+		list.sortByCombinedScore();
+		for (int i=0; i<LIST_SIZE; ++i)
+		{
+			list.get(i).printScoreDetails();
+		}
+		
 	}
 
 }

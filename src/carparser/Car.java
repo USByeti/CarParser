@@ -3,14 +3,16 @@ package carparser;
 /**
  * Stores data about a car
  * @author Will
- *
  */
 public class Car 
 {
 	private final String SIPP, NAME;
+	private static final int MANUAL_SCORE = 1;
+	private static final int AUTOMATIC_SCORE = 5;
+	private static final int AIR_CON_SCORE = 2;
 	
 	public final SippData SIPP_DATA;
-	public final double PRICE, RATING;
+	public final double PRICE, RATING, SCORE;
 	public final String SUPPLIER;
 	
 	
@@ -23,7 +25,43 @@ public class Car
 		RATING = rating;
 		
 		SIPP_DATA = new SippData(sipp);
+		SCORE = calculateScore();
+		
 	}
+	
+	
+	/**
+	 * Calculates the score for a car using the SIPP.
+	 * @return The score from the SIPP.
+	 */
+	private double calculateScore()
+	{
+		char[] sipp = SIPP.toCharArray();
+		double score = 0;
+		try
+		{
+			if(sipp[2] == 'M')
+			{
+				score += MANUAL_SCORE;
+			}
+			else if (sipp[2] == 'A')
+			{
+				score += AUTOMATIC_SCORE;
+			}
+			
+			if (sipp[3] == 'R')
+			{
+				score += AIR_CON_SCORE;
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Invalid SIPP - SIPP partialially processed.");
+		}
+		
+		return score;
+	}
+	
 	
 	/**
 	 * Prints all data about the car to standard output.
@@ -59,7 +97,7 @@ public class Car
 	
 	
 	/**
-	 * Prints the supplier details for this car
+	 * Prints the supplier details for this car.
 	 */
 	public void printSupplierRating()
 	{
@@ -67,5 +105,17 @@ public class Car
 		                   SIPP_DATA.CAR_TYPE + " - " +
 				           SUPPLIER + " - " + 
 		                   RATING);
+	}
+	
+	
+	/**
+	 * Prints out score details about this car.
+	 */
+	public void printScoreDetails()
+	{
+		System.out.println(NAME + " - " + 
+		                   SCORE + " - " + 
+				           RATING + " - " + 
+		                   (SCORE + RATING));
 	}
 }
