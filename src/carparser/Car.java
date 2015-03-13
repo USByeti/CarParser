@@ -7,11 +7,11 @@ package carparser;
  */
 public class Car 
 {
-	private final String SIPP, NAME, SUPPLIER;
-	private final double RATING;
-	private final SippData SIPP_DATA;
-
-	public final double PRICE;
+	private final String SIPP, NAME;
+	
+	public final SippData SIPP_DATA;
+	public final double PRICE, RATING;
+	public final String SUPPLIER;
 	
 	
 	public Car(String sipp, String name, String supplier, double price, double rating)
@@ -33,6 +33,7 @@ public class Car
 		System.out.println(NAME + " - " + SIPP + " - " + SUPPLIER + " - " + PRICE + " - " + RATING);
 	}
 	
+	
 	/**
 	 * Prints the name and price for the car.
 	 */
@@ -41,6 +42,10 @@ public class Car
 		System.out.println(NAME + " - " + PRICE);
 	}
 	
+	
+	/**
+	 * Prints the SIPP data for the car.
+	 */
 	public void printSippData()
 	{
 		System.out.println(NAME + " - " + 
@@ -50,5 +55,17 @@ public class Car
 				           SIPP_DATA.TRANSMISSION + " - " +
 	                       SIPP_DATA.FUEL + " - " +
 				           SIPP_DATA.AIR_CON);
+	}
+	
+	
+	/**
+	 * Prints the supplier details for this car
+	 */
+	public void printSupplierRating()
+	{
+		System.out.println(NAME + " - " + 
+		                   SIPP_DATA.CAR_TYPE + " - " +
+				           SUPPLIER + " - " + 
+		                   RATING);
 	}
 }

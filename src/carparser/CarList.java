@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -58,6 +60,18 @@ public class CarList extends ArrayList<Car> {
 		}
 	}
 	
+	
+	private int compareDoubles(double val1, double val2)
+	{
+		double comp = (val1-val2);
+		if (comp < 0)
+			return -1;
+		if (comp > 0)
+			return 1;
+		return 0;
+	}
+	
+	
 	/**
 	 * A Comparator used to sort the car list into price order.
 	 */
@@ -65,20 +79,62 @@ public class CarList extends ArrayList<Car> {
 	{
 		@Override
 		public int compare(Car car1, Car car2) {
-			double comp = (car1.PRICE-car2.PRICE);
-			if (comp < 0)
-				return -1;
-			if (comp > 0)
-				return 1;
-			return 0;
+			return compareDoubles(car1.PRICE, car2.PRICE);
 		}
 	}
 	
+	
 	/**
-	 * Sorts the car list into price order.
+	 * Sorts the car list into ascending price order.
 	 */
 	public void sortByPrice()
 	{
 		Collections.sort(this, new PriceComparator());
+	}
+	
+	
+	class RatingComparator implements Comparator<Car>
+	{
+		@Override
+		public int compare(Car car1, Car car2) {
+			return compareDoubles(car2.RATING, car1.RATING);
+		}
+	}
+	
+	
+	/**
+	 * Gets the highest rated suppliers for each type of car in the list and returns an ArrayList containing those Car objects.
+	 * @return ArrayList containing the top rated cars of each type of car. 
+	 */
+	public ArrayList<Car> getHighestRatedSuppliers()
+	{	
+		HashMap<String, Car> ratingsHash = new HashMap<String, Car>();
+		
+		// Check each car if it's type has been added to the list or if the current car has a higher rating than the stored one
+		for (int i=0; i<this.size(); ++i)
+		{
+			Car currentCar = this.get(i);
+			Car storedCar = ratingsHash.get(currentCar.SIPP_DATA.CAR_TYPE);
+			
+			if (storedCar == null || storedCar.RATING < currentCar.RATING)
+			{
+				ratingsHash.put(currentCar.SIPP_DATA.CAR_TYPE, currentCar);
+			}
+		}
+		
+		// Convert the hash to an ArrayList and sort it by rating.
+		ArrayList<Car> topRatedList = new ArrayList<Car>(ratingsHash.values());
+		Collections.sort(topRatedList, new RatingComparator());
+		
+		return topRatedList;
+	}
+	
+	
+	/**
+	 * Sorts the car list into descending rating order.
+	 */
+	public void sortByRating()
+	{
+		Collections.sort(this, new RatingComparator());
 	}
 }

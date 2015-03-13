@@ -1,6 +1,7 @@
 package carparser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Loads a list of cars from a url and prints out the contents of the list.
@@ -31,9 +32,17 @@ public class MainParser {
 			list.get(i).printNameAndPrice();
 		}
 		
+		// Print the sipp data for all cars
 		for (int i=0; i<LIST_SIZE; ++i)
 		{
 			list.get(i).printSippData();
+		}
+		
+		// Print the top suppliers for each type of car
+		ArrayList<Car> topRatedList = list.getHighestRatedSuppliers();
+		for (int i=0; i<topRatedList.size(); ++i)
+		{
+			topRatedList.get(i).printSupplierRating();
 		}
 		
 	}
